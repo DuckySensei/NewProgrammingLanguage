@@ -9,15 +9,21 @@ extern void yyerror(const char* s);
 
 %%
 
-"penup"                 {return PENUP;}                                                                                                     
-"pendown"               {return PENDOWN;}                                                                                                   
-"print"                 {return PRINT;}                                                                                                     
-"save"                  {return SAVE;}                                                                                                      
-"change_color"          {return CHANGE_COLOR;}                                                                                              
-"color"                 {return COLOR;}                                                                                                     
-"clear"                 {return CLEAR;}                                                                                                     
-"turn"                  {return TURN;}                                                                                                      
-"move"                  {return MOVE;}                                                                                                      
+penup                   {return PENUP;}
+pendown                 {return PENDOWN;}
+print                   {return PRINT;}
+save                    {return SAVE;}
+change_color            {return CHANGE_COLOR;}
+color                   {return COLOR;}
+clear                   {return CLEAR;}
+turn                    {return TURN;}
+move                    {return MOVE;}
+[0-9]+                  {yylval.f = atof(yytext); return NUMBER;}
++                       {return PLUS;}
+-                       {return SUB;}
+*                       {return MULT;}
+/                       {return DIV;}
+
 [ \t\r\n]                       ;                                                                                                           
 .                       { yyerror("Lexing Syntax error.\n"); }                                                                              
 
