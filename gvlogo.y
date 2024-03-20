@@ -98,7 +98,6 @@ command:		PENUP						{ penup(); }
 		|	WHERE						{where();}
 		|       expression_list
 		;
-
 expression_list:	expression
 		|	expression expression_list
 		;
@@ -146,6 +145,13 @@ void move(int num){
 }
 
 void goingto(int num1, int num2){ //update this to work
+	if(pen_state !=0){
+		SDL_SetRenderTarget(rend, texture);
+		SDL_RenderDrawLine(rend, x, y, num1, num2);
+		SDL_SetRenderTarget(rend, NULL);
+		SDL_RenderCopy(rend, texture, NULL, NULL);
+	}
+	
 	x = num1;
 	y = num2;
 }
